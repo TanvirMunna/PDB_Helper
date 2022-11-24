@@ -1,0 +1,13 @@
+.main-slider{
+    margin-top: 20px;
+}
+.carousel .thumb{
+    width: 5%;
+    height: 50px;
+}
+.thumb{
+    border: 2px solid #a2d2ff;
+}
+.carousel{
+    text-align: center;
+}
