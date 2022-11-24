@@ -5,7 +5,8 @@ import Home from "../../Home/Home";
 import Advertisement from "../../Home/Home/Advertisement/Advertisement";
 import Blogs from "../../Home/Home/Blogs/Blogs";
 import Myorders from "../../Home/Home/Myorders/Myorders";
-import MyProducts from "../../Home/Home/MyProducts/MyProducts";
+import AddProducts from "../../Home/Home/AddProducts/AddProducts";
+import Myproducts from "../../Home/Home/MyProducts/Myproducts";
 
 export const routers = createBrowserRouter([
     {
@@ -21,8 +22,8 @@ export const routers = createBrowserRouter([
                 element: <Advertisement></Advertisement>
             },
             {
-                path: '/myProducts',
-                element: <MyProducts></MyProducts>
+                path: '/addProduct',
+                element: <AddProducts></AddProducts>
             },
             {
                 path: '/myOrders',
@@ -31,6 +32,10 @@ export const routers = createBrowserRouter([
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>
+            },
+            {
+                path: '/myProducts',
+                element: <Myproducts></Myproducts>
             }
         ]
         

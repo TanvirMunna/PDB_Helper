@@ -37,7 +37,7 @@ const Banner = () => {
                     slider.map(slide => <div
                         key={slide.id}
                     >
-                        <img className='h-[500px]' src={slide.img} alt="images.jpg" />
+                        <img className='h-[500px] rounded-md' src={slide.img} alt="images.jpg" />
 
                         <p className="legend">{slide.model}</p>
                     </div>)
