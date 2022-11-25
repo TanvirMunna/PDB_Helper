@@ -21,7 +21,7 @@ const Advertisement = () => {
             <h1 className='text-3xl font-semibold mt-8'>Advertisement</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {
-                    products?.map(product => <div className="bg-[#bde0fe] shadow-xl my-8 flex flex-col justify-between p-3 rounded-lg"
+                    products?.map(product => <div className="bg-[#bde0fe] shadow-xl my-4 flex flex-col justify-between p-3 rounded-lg"
                         key={product._id}
                     >
 
@@ -30,12 +30,34 @@ const Advertisement = () => {
                         </div>
 
                         <div className="">
-                            <h2 className="">{product.brand}</h2>
+                            <h2 className="text-xl font-semibold">{product.brand}</h2>
 
-                            <p>If a dog chews shoes whose shoes does he choose?</p>
-                            <div className="card-actions justify-end">
+                            <div className='grid grid-cols-1 md:grid-cols-2 justify-between items-center'>
+                                <p>Location: {product.location}</p>
+                                <p className='line-through text-gray-500'>Tk: {product.originalPrice}</p>
+                                <p>Used: {product.usedTime}</p>
+                                <p className='font-semibold'>Tk: {product.resalePrice}</p>
+                                <p>Posted: {product.postedDate}</p>
+                                <div>
+                                    {
+                                        product.seller ?
+                                            <>
+                                                <button className="" title='Verified'>
+                                                    {product.seller}
+                                                    <div className="badge badge-success"></div>
+                                                </button>
+                                            </>
+                                            :
+                                            <p>Unknown seller</p>
+                                    }
+                                </div>
+                            </div>
 
-                                <button className="btn btn-primary">WishList</button>
+                            <div className="card-actions justify-start mt-3">
+
+                                <button className="btn btn-accent hover:btn-outline">WishList</button>
+
+                                <button className="btn btn-success hover:btn-outline">Purchase</button>
                             </div>
                         </div>
 

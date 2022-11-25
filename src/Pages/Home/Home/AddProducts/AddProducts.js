@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router';
+import { AuthContext } from '../../../../Context/Authprovider';
 
 const AddProducts = () => {
+    const { user } = useContext(AuthContext);
     const imghostkey = process.env.REACT_APP_imbgbb_key;
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/myProducts';
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -23,9 +25,13 @@ const AddProducts = () => {
         })
             .then(res => res.json())
             .then(imageData => {
-                if (imageData.success) {
+                if (imageData.success || user?.uid) {
                     console.log(imageData.data.url);
+                    const seller = user.displayName;
+                    const sellerEmail = user.email;
                     const addedProduct = {
+                        seller: seller,
+                        sellerEmail: sellerEmail,
                         image: imageData.data.url,
                         brand: data.brand,
                         productName: data.productName,
@@ -48,10 +54,8 @@ const AddProducts = () => {
                         .then(res => res.json())
                         .then(result => {
                             console.log(result);
-                            if (data.acknowledged) {
                                 toast.success("Successfully added the product");
                                 navigate(from, { replace: true });
-                            }
                         })
                 }
 
@@ -81,6 +85,19 @@ const AddProducts = () => {
                             <option>Bose</option>
                             <option>Sony</option>
                             <option>AKG</option>
+                        </select>
+                    </div>
+                    <div className="form-control w-full p-3">
+                        <label className="label">
+                            <span className="label-text">Condition</span>
+                        </label>
+                        <select className="select select-bordered w-full"
+                            {...register('condition', { required: "Please select one" })}
+                        >
+                            <option selected disabled >Choice Condition</option>
+                            <option>Excellent</option>
+                            <option>Good</option>
+                            <option>Fair</option>
                         </select>
                     </div>
 

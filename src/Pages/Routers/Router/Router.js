@@ -11,6 +11,8 @@ import Categories from "../../Home/Home/Categories/Categories";
 import SelectedBrand from "../../SelectedBrand/SelectedBrand";
 import Signup from "../../Signup/Signup";
 import Login from "../../Signup/Login";
+import Dashboard from "../../Dashboard/Dashboard";
+import Privaterout from "../Privaterout/Privaterout";
 
 export const routers = createBrowserRouter([
     {
@@ -27,11 +29,11 @@ export const routers = createBrowserRouter([
             },
             {
                 path: '/addProduct',
-                element: <AddProducts></AddProducts>
+                element: <Privaterout><AddProducts></AddProducts></Privaterout>
             },
             {
                 path: '/myOrders',
-                element: <Myorders></Myorders>
+                element: <Privaterout><Myorders></Myorders></Privaterout>
             },
             {
                 path: '/blogs',
@@ -39,7 +41,7 @@ export const routers = createBrowserRouter([
             },
             {
                 path: '/myProducts',
-                element: <Myproducts></Myproducts>
+                element: <Privaterout><Myproducts></Myproducts></Privaterout>
             },
             {
                 path: '/brands',
@@ -56,6 +58,10 @@ export const routers = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/dashboard',
+                element: <Privaterout><Dashboard></Dashboard></Privaterout>
             }
         ]
         

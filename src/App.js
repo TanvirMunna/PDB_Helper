@@ -4,8 +4,10 @@ import { routers } from './Pages/Routers/Router/Router';
 
 function App() {
   return (
-    <div className="max-w-[1400px] mx-auto">
-      <RouterProvider router={ routers} />
+    <div className=''>
+      <div className="max-w-[1400px] mx-auto">
+        <RouterProvider router={routers} />
+      </div>
     </div>
   );
 }
