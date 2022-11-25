@@ -9,6 +9,8 @@ import AddProducts from "../../Home/Home/AddProducts/AddProducts";
 import Myproducts from "../../Home/Home/MyProducts/Myproducts";
 import Categories from "../../Home/Home/Categories/Categories";
 import SelectedBrand from "../../SelectedBrand/SelectedBrand";
+import Signup from "../../Signup/Signup";
+import Login from "../../Signup/Login";
 
 export const routers = createBrowserRouter([
     {
@@ -46,6 +48,14 @@ export const routers = createBrowserRouter([
             {
                 path: '/selectedBrand',
                 element: <SelectedBrand></SelectedBrand>
+            },
+            {
+                path: '/signup',
+                element: <Signup></Signup>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
             }
         ]
         

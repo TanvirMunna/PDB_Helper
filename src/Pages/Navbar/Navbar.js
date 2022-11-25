@@ -1,15 +1,34 @@
-import React from 'react';
+import userEvent from '@testing-library/user-event';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/icon/logo.png'
+import { AuthContext } from '../../Context/Authprovider';
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
     const menulist = <>
         <Link to='/'>Home</Link>
         <Link to='/advertisement'>Advertisement</Link>
         <Link to='/addProduct'>Add Products</Link>
         <Link to='/myOrders'>My Orders</Link>
-        <Link to='/dashboard'>Dashboard</Link>
+        {
+            user?.uid ?
+                <>
+                    <Link onClick={handleLogout}>Logout</Link>
+                    <Link to='/dashboard'>Dashboard</Link>
+                </>
+                :
+                <Link to='/login'>Login</Link>
+        }
         <Link to='/admin'>Admin</Link>
     </>
+
+
     return (
         <div className="navbar bg-[#a2d2ff] text-[#264653] font-semibold z-50 shadow-xl sticky top-0">
             <div className="navbar-start">

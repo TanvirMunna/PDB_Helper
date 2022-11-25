@@ -1,11 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 const AddProducts = () => {
     const imghostkey = process.env.REACT_APP_imbgbb_key;
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -48,7 +50,7 @@ const AddProducts = () => {
                             console.log(result);
                             if (data.acknowledged) {
                                 toast.success("Successfully added the product");
-                                navigate('/myProducts'); 
+                                navigate(from, { replace: true });
                             }
                         })
                 }
