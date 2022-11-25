@@ -142,7 +142,7 @@ const AddProducts = () => {
                         <input className="input input-bordered w-full" type='text'
                             {...register("usedTime", { required: true })}
                             aria-invalid={errors.usedTime ? "true" : "false"}
-                            placeholder="e.g: Sony 9 pro"
+                            placeholder="e.g: 6m/1y"
                         />
                         {errors.usedTime?.type === 'required' && <p role="alert" className='text-red-700 font-xs'>Your used time is required</p>}
                     </div>

@@ -1,0 +1,18 @@
+[
+    {
+        "brand": "Sennheiser",
+        "imgURL": "https://i.ibb.co/sW8HBB7/sennheiser.png"
+    },
+    {
+        "brand": "Sony",
+        "imgURL": "https://i.ibb.co/w43rCwF/sony.png"
+    },
+    {
+        "brand": "Bose",
+        "imgURL": "https://i.ibb.co/xM7qzjg/bose.png"
+    },
+    {
+        "brand": "AKG",
+        "imgURL": "https://i.ibb.co/jMMwYj5/akg.png"
+    }
+]
