@@ -15,6 +15,7 @@ import Dashboard from "../../Dashboard/Dashboard";
 import Privaterout from "../Privaterout/Privaterout";
 import DashboardLayout from "../../../Layout/DashboardLayout";
 import Sellers from "../../Dashboard/Sellers/Sellers";
+import Buyers from "../../Dashboard/Buyers/Buyers";
 
 export const routers = createBrowserRouter([
     {
@@ -72,6 +73,10 @@ export const routers = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Sellers></Sellers>
+            },
+            {
+                path: '/dashboard/buyers',
+                element: <Buyers></Buyers>
             },
         ]
     },
