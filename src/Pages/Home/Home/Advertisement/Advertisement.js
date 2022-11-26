@@ -5,12 +5,12 @@ import Loading from '../../../../Components/Loading';
 const Advertisement = () => {
 
     // query
-    const { data: products,isLoading } = useQuery({
+    const { data: products, isLoading } = useQuery({
         queryKey: ['addedProducts'],
         queryFn: async () => {
             const res = await fetch('http://localhost:8000/addedProducts', {
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem('Your-Token')}`
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
             });
             const data = await res.json();
@@ -18,7 +18,7 @@ const Advertisement = () => {
         }
     });
     if (isLoading) {
-        return <Loading/>
+        return <Loading />
     }
     return (
         <div>
@@ -67,7 +67,7 @@ const Advertisement = () => {
 
                     </div>)
                 }
-           </div>
+            </div>
         </div>
     );
 };
