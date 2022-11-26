@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/Authprovider';
 import signup from '../../assets/images/login.svg'
+import { useToken } from '../../Hooks/useToken';
 
 
 const Signup = () => {
@@ -11,41 +11,45 @@ const Signup = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signupError, setSignupError] = useState('');
-    const [setCreateUserEmail] = useState('');
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    const [userEmail, setUserEmail] = useState('');
+    const [token] = useToken(userEmail);
 
+    if (token) {
+        navigate('/');
+    }
 
-    const handleTosignup = (data) => {
+    const handleToSignup = (data) => {
         setSignupError('');
-        createUser(data.email, data.password)
+        createUser(data.email, data.password,data.condition)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast("Created user successfully");
-
+                alert("Created user successfully");
                 const userInfo = {
                     displayName: data.name,
                 }
 
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.email, data.name);
+                        saveUser(data.email, data.name, data.condition);
                     })
                     .catch(error => console.error(error))
             })
             .catch(error => {
                 console.error(error);
                 setSignupError(error.message);
-        })
+            })
+        
     }
     // create user collections
 
-    const saveUser = (email, name) => {
-        const user = { email, name };
-        fetch('http://localhost:5000/users', {
+    const saveUser = (email, name,userType) => {
+        const user = { email, name,userType };
+        fetch('http://localhost:8000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -54,7 +58,8 @@ const Signup = () => {
         })
             .then(res => res.json())
             .then(data => {
-                setCreateUserEmail(email);
+                console.log(data)
+                setUserEmail(data.email);
             })
     }
 
@@ -72,7 +77,7 @@ const Signup = () => {
             <img className='w-2/5' src={signup} alt="" />
             <div className='w-3/5'>
                 <h1 className='text-2xl font-semibold text-center'>Signup</h1>
-                <form onSubmit={handleSubmit(handleTosignup)}>
+                <form onSubmit={handleSubmit(handleToSignup)}>
 
                     <div className=" w-full">
                         <label className="label">

@@ -12,6 +12,10 @@ const Navbar = () => {
             .catch(error => console.log(error))
     }
     const menulist = <>
+        {
+            user?.uid && 
+            <p>Welcome<small>{user.displayName}</small></p>
+        }
         <Link to='/'>Home</Link>
         <Link to='/advertisement'>Advertisement</Link>
         <Link to='/addProduct'>Add Products</Link>

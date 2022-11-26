@@ -3,8 +3,8 @@ import { Navigate, useLocation } from 'react-router';
 import Isloading from '../../../Components/Isloading';
 import { AuthContext } from '../../../Context/Authprovider';
 
-const Privaterout = ({ children ,loading}) => {
-    const { user } = useContext(AuthContext);
+const Privaterout = ({ children }) => {
+    const { user, loading } = useContext(AuthContext);
     const location = useLocation();
     if (loading) {
         return <Isloading></Isloading>

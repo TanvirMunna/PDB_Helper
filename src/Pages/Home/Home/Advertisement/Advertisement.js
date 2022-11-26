@@ -8,7 +8,11 @@ const Advertisement = () => {
     const { data: products,isLoading } = useQuery({
         queryKey: ['addedProducts'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:8000/addedProducts');
+            const res = await fetch('http://localhost:8000/addedProducts', {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('Your-Token')}`
+                }
+            });
             const data = await res.json();
             return data;
         }

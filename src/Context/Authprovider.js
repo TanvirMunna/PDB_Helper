@@ -7,7 +7,7 @@ const auth = getAuth(app);
 
 const Authprovider = ({children}) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
 
     // signIn with google
@@ -41,10 +41,10 @@ const Authprovider = ({children}) => {
         return signOut(auth);
     }
     useEffect(() => {
-        setLoading(false);
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             console.log("CurrentUser observing", currentUser);
             setUser(currentUser);
+            setLoading(false);
         })
         return () => {
             return unsubscribe();
