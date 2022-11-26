@@ -5,6 +5,7 @@
 .carousel .thumb{
     width: 5%;
     height: 50px;
+    box-sizing: border-box;
 }
 .thumb{
     border: 2px solid #a2d2ff;
@@ -13,7 +14,7 @@
     text-align: center;
 }
 .carousel .control-dots .dot{
-    background-color: gray;
+    background-color: #454545;
 }
 .carousel .slide .legend{
     letter-spacing: 4px;

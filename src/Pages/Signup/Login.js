@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/Authprovider';
+import login from '../../assets/images/login.svg'
 
 const Login = () => {
     const { signIn, googleSignin } = useContext(AuthContext);
@@ -44,8 +45,9 @@ const Login = () => {
             .catch(error => console.error(error))
     }
     return (
-        <div className='h-[800] w-full md:ww-1/2 mx-auto flex justify-center items-center shadow-2xl my-10'>
-            <div>
+        <div className='h-[800] w-full flex flex-col md:flex-row justify-center items-center shadow-2xl my-10'>
+            <img className='w-2/5' src={login} alt="" />
+            <div className='w-3/5'>
                 <h1 className='text-2xl font-semibold text-center'>Login</h1>
                 <form onSubmit={handleSubmit(handleToLogin)}>
 

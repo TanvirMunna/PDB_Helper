@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/Authprovider';
+import signup from '../../assets/images/login.svg'
 
 
 const Signup = () => {
@@ -67,8 +68,9 @@ const Signup = () => {
             .catch(error => console.error(error))
     }
     return (
-        <div className='h-[800] w-full md:w-1/2 mx-auto flex justify-center items-center shadow-2xl'>
-            <div>
+        <div className='h-[800] w-full flex flex-col md:flex-row justify-center items-center shadow-2xl my-10'>
+            <img className='w-2/5' src={signup} alt="" />
+            <div className='w-3/5'>
                 <h1 className='text-2xl font-semibold text-center'>Signup</h1>
                 <form onSubmit={handleSubmit(handleTosignup)}>
 
@@ -113,6 +115,19 @@ const Signup = () => {
 
                     <div>
                         {signupError && <p className='text-red-700'>{signupError}</p>}
+                    </div>
+
+                    <div className="w-full">
+                        <label className="label">
+                            <span className="label-text">I am as a</span>
+                        </label>
+                        <select className="select select-bordered w-full"
+                            {...register('condition', { required: "Please select one" })}
+                        >
+                            <option selected>user</option>
+                            <option>seller</option>
+                            <option>buyer</option>
+                        </select>
                     </div>
 
                     <div className=" w-full my-3">
