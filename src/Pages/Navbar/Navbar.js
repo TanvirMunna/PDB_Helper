@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/icon/logo.png'
@@ -19,7 +18,7 @@ const Navbar = () => {
         <Link to='/'>Home</Link>
         <Link to='/advertisement'>Advertisement</Link>
         <Link to='/addProduct'>Add Products</Link>
-        <Link to='/myOrders'>My Orders</Link>
+        <Link to='/orderedProduct'>My Orders</Link>
         {
             user?.uid ?
                 <>
@@ -29,7 +28,6 @@ const Navbar = () => {
                 :
                 <Link to='/login'>Login</Link>
         }
-        <Link to='/admin'>Admin</Link>
     </>
 
 

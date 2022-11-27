@@ -12,12 +12,15 @@ const Login = () => {
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
 
+    /*
     const [loginUser, setLoginUser] = useState('');
     const [token] = useToken(loginUser);
 
     if (token) {
         navigate(from, { replace: true });
     }
+    */
+    
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
 
@@ -30,7 +33,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 alert("Successfully signed in");
-                setLoginUser(data.email);
+                navigate(from,{replace:true})
             })
             .catch(error => {
                 console.error(error.message);

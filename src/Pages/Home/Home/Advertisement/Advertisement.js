@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Loading from '../../../../Components/Loading';
 
 const Advertisement = () => {
@@ -20,11 +21,18 @@ const Advertisement = () => {
     if (isLoading) {
         return <Loading />
     }
+
+    // handlerWishList
+
+    const handlerWishList = (data) => {
+        
+    }
     return (
         <div>
             <h1 className='text-3xl font-semibold mt-8'>Advertisement</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {
+                    products &&
                     products?.map(product => <div className="bg-[#bde0fe] shadow-xl my-4 flex flex-col justify-between p-3 rounded-lg"
                         key={product._id}
                     >
@@ -59,9 +67,13 @@ const Advertisement = () => {
 
                             <div className="card-actions justify-start mt-3">
 
-                                <button className="btn btn-accent hover:btn-outline">WishList</button>
+                                <button onClick={handlerWishList} className="btn btn-accent hover:btn-outline">WishList</button>
 
-                                <button className="btn btn-success hover:btn-outline">Purchase</button>
+                                <Link
+                                    to={`/myOrders/${product._id}`}
+                                >
+                                    <button className="btn btn-success hover:btn-outline">Purchase</button>
+                                </Link>
                             </div>
                         </div>
 

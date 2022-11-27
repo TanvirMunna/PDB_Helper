@@ -15,12 +15,13 @@ const Signup = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    /*
     const [userEmail, setUserEmail] = useState('');
     const [token] = useToken(userEmail);
 
     if (token) {
         navigate('/');
-    }
+    }*/
 
     const handleToSignup = (data) => {
         setSignupError('');
@@ -28,6 +29,7 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate('/')
                 alert("Created user successfully");
                 const userInfo = {
                     displayName: data.name,
@@ -59,7 +61,7 @@ const Signup = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                setUserEmail(data.email);
+                navigate('/');
             })
     }
 
@@ -68,7 +70,7 @@ const Signup = () => {
         googleSignin()
             .then(result => {
                 console.log(result.user);
-                navigate(from, { replace: true });
+                navigate('/');
             })
             .catch(error => console.error(error))
     }

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../../../../Components/Loading';
 const Categories = () => {
@@ -26,7 +26,8 @@ const Categories = () => {
                         >
                             <div className='cursor-pointer border-2 border-solid border-blue-400 rounded-md p-2' title={brand.brand}>
                                 <img className='hidden md:block' src={brand.imgURL} alt="" />
-                                <Link to='/selectedBrand' className='text-xl md:text-2xl font-semibold hover:underline'>{brand.brand}</Link>
+
+                                <Link to={`/selectedBrand/${brand.brand}`} className='text-xl md:text-2xl font-semibold hover:underline'>{brand.brand}</Link>
                             </div>
                         </div>)
                 }

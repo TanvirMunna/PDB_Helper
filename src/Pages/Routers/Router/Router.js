@@ -16,6 +16,7 @@ import Privaterout from "../Privaterout/Privaterout";
 import DashboardLayout from "../../../Layout/DashboardLayout";
 import Sellers from "../../Dashboard/Sellers/Sellers";
 import Buyers from "../../Dashboard/Buyers/Buyers";
+import OrderedProducts from "../../OrderedProducts/OrderedProducts";
 
 export const routers = createBrowserRouter([
     {
@@ -35,8 +36,9 @@ export const routers = createBrowserRouter([
                 element: <Privaterout><AddProducts></AddProducts></Privaterout>
             },
             {
-                path: '/myOrders',
-                element: <Privaterout><Myorders></Myorders></Privaterout>
+                path: '/myOrders/:id',
+                element: <Privaterout><Myorders></Myorders></Privaterout>,
+                loader: ({ params }) => fetch(`http://localhost:8000/orderedProducts/${params.id}`)
             },
             {
                 path: '/blogs',
@@ -47,11 +49,15 @@ export const routers = createBrowserRouter([
                 element: <Privaterout><Myproducts></Myproducts></Privaterout>
             },
             {
+                path: '/orderedProduct',
+                element: <Privaterout><OrderedProducts></OrderedProducts></Privaterout>
+            },
+            {
                 path: '/brands',
                 element: <Categories></Categories>
             },
             {
-                path: '/selectedBrand',
+                path: '/selectedBrand/:id',
                 element: <SelectedBrand></SelectedBrand>
             },
             {

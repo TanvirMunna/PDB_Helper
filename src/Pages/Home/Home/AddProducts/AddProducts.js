@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useContext, useState } from 'react';
+import { set, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../../../Context/Authprovider';
@@ -14,6 +14,7 @@ const AddProducts = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const productAddHandler = data => {
+
         const image = data.image[0];
 
         const formData = new FormData();
@@ -54,8 +55,8 @@ const AddProducts = () => {
                         .then(res => res.json())
                         .then(result => {
                             console.log(result);
-                                toast.success("Successfully added the product");
-                                navigate(from, { replace: true });
+                                alert("Successfully added the product");
+                                navigate('/myProducts');
                         })
                 }
 
