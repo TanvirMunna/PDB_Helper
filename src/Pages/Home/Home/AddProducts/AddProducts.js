@@ -45,7 +45,7 @@ const AddProducts = () => {
 
                     // addProducts to database collection
 
-                    fetch('http://localhost:8000/addedProducts', {
+                    fetch('https://smart-resale-stall-server.vercel.app/addedProducts', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -55,8 +55,8 @@ const AddProducts = () => {
                         .then(res => res.json())
                         .then(result => {
                             console.log(result);
-                                alert("Successfully added the product");
-                                navigate('/myProducts');
+                            alert("Successfully added the product");
+                            navigate('/myProducts');
                         })
                 }
 

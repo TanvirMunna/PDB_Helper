@@ -7,7 +7,7 @@ import { useToken } from '../../Hooks/useToken';
 
 
 const Signup = () => {
-    const {createUser, googleSignin, updateUser } = useContext(AuthContext);
+    const { createUser, googleSignin, updateUser } = useContext(AuthContext);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signupError, setSignupError] = useState('');
@@ -25,7 +25,7 @@ const Signup = () => {
 
     const handleToSignup = (data) => {
         setSignupError('');
-        createUser(data.email, data.password,data.condition)
+        createUser(data.email, data.password, data.condition)
             .then(result => {
                 const user = result.user;
                 console.log(user);
@@ -45,13 +45,13 @@ const Signup = () => {
                 console.error(error);
                 setSignupError(error.message);
             })
-        
+
     }
     // create user collections
 
-    const saveUser = (email, name,userType) => {
-        const user = { email, name,userType };
-        fetch('http://localhost:8000/users', {
+    const saveUser = (email, name, userType) => {
+        const user = { email, name, userType };
+        fetch('https://smart-resale-stall-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

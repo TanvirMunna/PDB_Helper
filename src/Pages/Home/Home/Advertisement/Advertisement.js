@@ -9,7 +9,7 @@ const Advertisement = () => {
     const { data: products, isLoading } = useQuery({
         queryKey: ['addedProducts'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:8000/addedProducts', {
+            const res = await fetch('https://smart-resale-stall-server.vercel.app/addedProducts', {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -25,7 +25,7 @@ const Advertisement = () => {
     // handlerWishList
 
     const handlerWishList = (data) => {
-        
+
     }
     return (
         <div>
@@ -38,7 +38,7 @@ const Advertisement = () => {
                     >
 
                         <div className='rounded-md'>
-                            <img className='w-full h-52 rounded-md' src={product.image} alt="Shoes" />
+                            <img className='w-full h-52 rounded-md' src={product.image} alt="Product" />
                         </div>
 
                         <div className="">

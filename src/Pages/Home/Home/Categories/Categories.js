@@ -2,19 +2,21 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../../../../Components/Loading';
+
 const Categories = () => {
     const { data: brands, isLoading } = useQuery({
         queryKey: ['brands'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:8000/brands');
+            const res = await fetch('https://smart-resale-stall-server.vercel.app/brands');
             const data = await res.json();
             return data;
         }
     });
-    // const url = `http://localhost:8000/selectedBrand?brand=${brands.brand}`
+
     if (isLoading) {
         return <Loading></Loading>
     }
+
     return (
         <div >
             <h1 className='text-3xl font-semibold my-7'>Select brand</h1>
@@ -31,7 +33,7 @@ const Categories = () => {
                             </div>
                         </div>)
                 }
-           </div>
+            </div>
         </div>
     );
 };

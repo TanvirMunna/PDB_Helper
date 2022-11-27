@@ -21,4 +21,4 @@
 ## [Click here to see server repository](https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-UhaiMong)
 
 # Live website:
-## [Click here to see live website](https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-UhaiMong)
+## [Click here to see live website](https://smart-resale-stall.web.app/)

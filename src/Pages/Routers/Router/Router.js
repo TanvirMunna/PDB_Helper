@@ -38,7 +38,7 @@ export const routers = createBrowserRouter([
             {
                 path: '/myOrders/:id',
                 element: <Privaterout><Myorders></Myorders></Privaterout>,
-                loader: ({ params }) => fetch(`http://localhost:8000/orderedProducts/${params.id}`)
+                loader: ({ params }) => fetch(`https://smart-resale-stall-server.vercel.app/orderedProducts/${params.id}`)
             },
             {
                 path: '/blogs',
@@ -68,9 +68,9 @@ export const routers = createBrowserRouter([
                 path: '/login',
                 element: <Login></Login>
             },
-            
+
         ]
-        
+
     },
     {
         path: '/dashboard',
