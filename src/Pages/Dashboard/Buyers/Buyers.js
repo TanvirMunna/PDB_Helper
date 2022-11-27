@@ -4,15 +4,17 @@ import { AuthContext } from '../../../Context/Authprovider';
 
 const Buyers = () => {
     const { user } = useContext(AuthContext);
+    console.log(user.email);
     const url = `http://localhost:8000/allBuyers`;
-    const { data: orderedProducts ,refetch} = useQuery({
+    const { data: orderedProducts, refetch } = useQuery({
         queryKey: ["orderedProducts"],
         queryFn: async () => {
             const res = await fetch(url);
             const data = await res.json();
             return data
         }
-    })
+    });
+
     const handleDelete = (_id) => {
         const confirmation = window.confirm(`Are you sure that want to delete`)
         if (confirmation) {
@@ -41,7 +43,7 @@ const Buyers = () => {
                             <th>Product</th>
                             <th>Buyer Location</th>
                             <th>Price</th>
-                            <th>Payment</th>
+                            <th>Payment Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -58,7 +60,7 @@ const Buyers = () => {
                                 <td>{ordered.brand},{ordered.productName}</td>
                                 <td>{ordered.buyerLocation}</td>
                                 <td>{ordered.price}</td>
-                                <td><button className='bg-[#A2D2FF] text-gray-600 h-7 w-auto px-3 rounded-md font-semibold text-[18px] shadow-lg'>Pay</button></td>
+                                <td><button className='bg-[#A2D2FF] text-gray-600 h-7 w-auto px-3 rounded-md font-semibold shadow-lg'>Paid/Unpaid</button></td>
 
                                 <td className='hover:cursor-pointer'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 text-red-500"
                                     onClick={()=>handleDelete(ordered._id)}
