@@ -45,7 +45,7 @@ const AddProducts = () => {
 
                     // addProducts to database collection
 
-                    fetch('https://smart-resale-stall-server.vercel.app/addedProducts', {
+                    fetch('http://localhost:8000/addedProducts', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

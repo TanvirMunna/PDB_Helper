@@ -25,7 +25,7 @@ const Myorders = () => {
             sellerEmail,
         }
 
-        fetch('https://smart-resale-stall-server.vercel.app/ordered', {
+        fetch('http://localhost:8000/ordered', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

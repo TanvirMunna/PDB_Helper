@@ -7,7 +7,7 @@ const Categories = () => {
     const { data: brands, isLoading } = useQuery({
         queryKey: ['brands'],
         queryFn: async () => {
-            const res = await fetch('https://smart-resale-stall-server.vercel.app/brands');
+            const res = await fetch('http://localhost:8000/brands');
             const data = await res.json();
             return data;
         }

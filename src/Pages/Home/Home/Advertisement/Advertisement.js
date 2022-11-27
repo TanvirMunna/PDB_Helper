@@ -9,7 +9,7 @@ const Advertisement = () => {
     const { data: products, isLoading } = useQuery({
         queryKey: ['addedProducts'],
         queryFn: async () => {
-            const res = await fetch('https://smart-resale-stall-server.vercel.app/addedProducts', {
+            const res = await fetch('http://localhost:8000/addedProducts', {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
