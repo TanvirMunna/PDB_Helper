@@ -6,7 +6,7 @@ import { AuthContext } from '../../../../Context/Authprovider';
 
 const Myorders = () => {
     const { user, loading } = useContext(AuthContext);
-    
+
     const orders = useLoaderData();
     const { brand, image, resalePrice, seller, productName } = orders;
     const navigate = useNavigate();
@@ -32,7 +32,7 @@ const Myorders = () => {
             email: user.email,
         }
 
-        fetch('http://localhost:8000/ordered', {
+        fetch('https://smart-resale-stall-server.vercel.app/ordered', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -47,7 +47,7 @@ const Myorders = () => {
             })
     }
     if (loading) {
-        return <Isloading/>
+        return <Isloading />
     }
 
     return (

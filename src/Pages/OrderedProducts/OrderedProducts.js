@@ -7,7 +7,7 @@ const OrderedProducts = () => {
     const { user } = useContext(AuthContext);
 
     console.log(user.email);
-    const url = `http://localhost:8000/specificBuyer?email=${user.email}`;
+    const url = `https://smart-resale-stall-server.vercel.app/specificBuyer?email=${user.email}`;
     const { data: orderedProducts, refetch } = useQuery({
         queryKey: ["orderedProducts"],
         queryFn: async () => {
@@ -20,7 +20,7 @@ const OrderedProducts = () => {
     const handleDelete = (_id) => {
         const confirmation = window.confirm(`Are you sure that want to delete`)
         if (confirmation) {
-            fetch(`http://localhost:8000/buyers/${_id}`, {
+            fetch(`https://smart-resale-stall-server.vercel.app/buyers/${_id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -69,12 +69,12 @@ const OrderedProducts = () => {
                                 <td><button className='bg-[#A2D2FF] text-gray-600 h-7 w-auto px-3 rounded-md font-semibold shadow-lg py-2 hover:bg-none'>Pay Now</button></td>
 
                                 <td className='hover:cursor-pointer'>
-                                    <button 
+                                    <button
                                         className='bg-[#A2D2FF] text-red-500 h-7 px-4 rounded-lg shadow-lg font-semibold'
-                                    onClick={() => handleDelete(ordered._id)}
+                                        onClick={() => handleDelete(ordered._id)}
                                     >
                                         Cancel
-                                </button>
+                                    </button>
                                 </td>
                             </tr>)
                         }

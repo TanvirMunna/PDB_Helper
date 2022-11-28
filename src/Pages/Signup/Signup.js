@@ -51,7 +51,7 @@ const Signup = () => {
 
     const saveUser = (email, name, userType) => {
         const user = { email, name, userType };
-        fetch('http://localhost:8000/users', {
+        fetch('https://smart-resale-stall-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

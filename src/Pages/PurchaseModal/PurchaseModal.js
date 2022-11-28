@@ -28,7 +28,7 @@ const PurchaseModal = ({ productInfo }) => {
             email: user.email,
         }
 
-        fetch('http://localhost:8000/ordered', {
+        fetch('https://smart-resale-stall-server.vercel.app/ordered', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

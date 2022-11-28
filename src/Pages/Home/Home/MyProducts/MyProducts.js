@@ -4,8 +4,8 @@ import { AuthContext } from '../../../../Context/Authprovider';
 
 const Myproducts = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:8000/specificAddedProduct?email=${user.email}`;
-    const { data: addedProducts ,refetch} = useQuery({
+    const url = `https://smart-resale-stall-server.vercel.app/specificAddedProduct?email=${user.email}`;
+    const { data: addedProducts, refetch } = useQuery({
         queryKey: ["addedProducts", user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -20,7 +20,7 @@ const Myproducts = () => {
     const handleDelete = (_id, product) => {
         const confirmation = window.confirm(`If you delete, you will unable to recover, agree?`)
         if (confirmation) {
-            fetch(`http://localhost:8000/products/${_id}`, {
+            fetch(`https://smart-resale-stall-server.vercel.app/products/${_id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -29,7 +29,7 @@ const Myproducts = () => {
                     alert('successfully deleted');
                     refetch();
 
-            })
+                })
         }
     }
     return (

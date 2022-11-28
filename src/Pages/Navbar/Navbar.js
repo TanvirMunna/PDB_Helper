@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/Authprovider';
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
 
-    const url = `http://localhost:8000/users`;
+    const url = `https://smart-resale-stall-server.vercel.app/users`;
     const { data: allUser, refetch } = useQuery({
         queryKey: ["allUser"],
         queryFn: async () => {

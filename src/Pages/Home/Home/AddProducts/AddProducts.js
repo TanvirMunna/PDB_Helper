@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import {useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { AuthContext } from '../../../../Context/Authprovider';
 
 const AddProducts = () => {
-    const { user,loader } = useContext(AuthContext);
+    const { user, loader } = useContext(AuthContext);
     const imghostkey = process.env.REACT_APP_imbgbb_key;
     const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ const AddProducts = () => {
 
                     // addProducts to database collection
 
-                    fetch('http://localhost:8000/addedProducts', {
+                    fetch('https://smart-resale-stall-server.vercel.app/addedProducts', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
