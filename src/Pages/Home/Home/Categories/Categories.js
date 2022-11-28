@@ -7,7 +7,7 @@ const Categories = () => {
     const { data: brands, isLoading } = useQuery({
         queryKey: ['brands'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:8000/brands');
+            const res = await fetch('http://localhost:8000/allBrandsProducts');
             const data = await res.json();
             return data;
         }
@@ -27,9 +27,9 @@ const Categories = () => {
                             key={brand._id}
                         >
                             <div className='cursor-pointer border-2 border-solid border-blue-400 rounded-md p-2' title={brand.brand}>
-                                <img className='hidden md:block' src={brand.imgURL} alt="" />
+                                <img className='hidden md:block' src={brand.image} alt="" />
 
-                                <Link to={`/selectedBrand/${brand.brand}`} className='text-xl md:text-2xl font-semibold hover:underline'>{brand.brand}</Link>
+                                <Link to={`/selectedBrand/${brand._id}`} className='text-xl md:text-2xl font-semibold hover:underline'>{brand.brand}</Link>
                             </div>
                         </div>)
                 }

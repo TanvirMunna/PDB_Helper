@@ -58,7 +58,8 @@ export const routers = createBrowserRouter([
             },
             {
                 path: '/selectedBrand/:id',
-                element: <SelectedBrand></SelectedBrand>
+                element: <Privaterout><SelectedBrand></SelectedBrand></Privaterout>,
+                loader: ({ params }) => fetch(`http://localhost:8000/allBrandsProducts/${params.id}`),
             },
             {
                 path: '/signup',

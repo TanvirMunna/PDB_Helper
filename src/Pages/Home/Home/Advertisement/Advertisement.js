@@ -50,12 +50,13 @@ const Advertisement = () => {
                                 <p>Used: {product.usedTime}</p>
                                 <p className='font-semibold'>Tk: {product.resalePrice}</p>
                                 <p>Posted: {product.postedDate}</p>
+                                <p>Condition: {product.condition}</p>
                                 <div>
                                     {
                                         product.seller ?
                                             <>
                                                 <button className="" title='Verified'>
-                                                    {product.seller}
+                                                    Verified seller: {product.seller}
                                                     <div className="badge badge-success"></div>
                                                 </button>
                                             </>

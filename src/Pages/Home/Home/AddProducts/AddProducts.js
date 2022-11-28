@@ -40,6 +40,7 @@ const AddProducts = () => {
                         resalePrice: data.resalePrice,
                         originalPrice: data.originalPrice,
                         usedTime: data.usedTime,
+                        condition: data.condition,
                         postedDate: data.date,
                     }
 

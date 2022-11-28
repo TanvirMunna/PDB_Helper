@@ -18,6 +18,7 @@ const Navbar = () => {
         <Link to='/'>Home</Link>
         <Link to='/advertisement'>Advertisement</Link>
         <Link to='/addProduct'>Add Products</Link>
+        <Link to='/myProducts'>My Products</Link>
         <Link to='/orderedProduct'>My Orders</Link>
         {
             user?.uid ?
