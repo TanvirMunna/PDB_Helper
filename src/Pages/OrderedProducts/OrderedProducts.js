@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/Authprovider';
 
 const OrderedProducts = () => {
+
     const { user } = useContext(AuthContext);
+
     console.log(user.email);
-    const url = `http://localhost:8000/allBuyers`;
+    const url = `http://localhost:8000/specificBuyer?email=${user.email}`;
     const { data: orderedProducts, refetch } = useQuery({
         queryKey: ["orderedProducts"],
         queryFn: async () => {
@@ -34,7 +35,7 @@ const OrderedProducts = () => {
     }
     return (
         <div>
-            <h1 className="text-3xl">Buyers</h1>
+            <h1 className="text-3xl my-4">Your ordered list</h1>
             <div className="overflow-x-auto">
                 <table className="table table-compact w-full">
                     <thead>

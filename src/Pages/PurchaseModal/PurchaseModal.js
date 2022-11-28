@@ -1,14 +1,19 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
+import Isloading from '../../Components/Isloading';
 import { AuthContext } from '../../Context/Authprovider';
 
 const PurchaseModal = ({ productInfo }) => {
-    const { user } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
+    console.log(user.email);
     const { model, location, resalePrice, picture } = productInfo;
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+    if (loading) {
+        return <Isloading></Isloading>
+    }
 
     const bookingHandler = (data) => {
         const orders = {
@@ -20,7 +25,7 @@ const PurchaseModal = ({ productInfo }) => {
             brand: data.productName,
             price: data.price,
             image: picture,
-            sellerEmail: data.email
+            email: user.email,
         }
 
         fetch('http://localhost:8000/ordered', {
@@ -113,7 +118,7 @@ const PurchaseModal = ({ productInfo }) => {
                                     <span className="label-text" defaultValue={user.email} readOnly>Your Email</span>
                                 </label>
 
-                                <input className="input input-bordered w-full" type='text'
+                                <input className="input input-bordered w-full" type='text' defaultValue={user?.email} readOnly
                                     {...register("email")}
                                 />
                             </div>

@@ -4,7 +4,7 @@ import { AuthContext } from '../../../../Context/Authprovider';
 
 const Myproducts = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:8000/addedProducts?email=${user.email}`;
+    const url = `http://localhost:8000/specificAddedProduct?email=${user.email}`;
     const { data: addedProducts ,refetch} = useQuery({
         queryKey: ["addedProducts", user?.email],
         queryFn: async () => {

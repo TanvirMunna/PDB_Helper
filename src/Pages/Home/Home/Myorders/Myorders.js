@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLoaderData, useNavigate } from 'react-router';
+import Isloading from '../../../../Components/Isloading';
+import { AuthContext } from '../../../../Context/Authprovider';
 
 const Myorders = () => {
+    const { user, loading } = useContext(AuthContext);
+    
     const orders = useLoaderData();
-    const { brand, image, resalePrice, seller, productName, sellerEmail } = orders;
+    const { brand, image, resalePrice, seller, productName } = orders;
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const bookingHandler = data => {
+        if (loading) {
+            return <Isloading />
+        }
 
         // addProducts to database collection
 
@@ -22,7 +29,7 @@ const Myorders = () => {
             brand: data.brand,
             price: data.price,
             image,
-            sellerEmail,
+            email: user.email,
         }
 
         fetch('http://localhost:8000/ordered', {
@@ -38,6 +45,9 @@ const Myorders = () => {
                 alert('Successfully booked the product.');
                 navigate('/orderedProduct');
             })
+    }
+    if (loading) {
+        return <Isloading/>
     }
 
     return (
@@ -116,6 +126,16 @@ const Myorders = () => {
                             placeholder="e.g: your name"
                         />
                         {errors.originalPrice?.type === 'required' && <p role="alert" className='text-red-700 font-xs'>Your name is required</p>}
+                    </div>
+
+                    <div className="form-control w-full p-3">
+                        <label className="label">
+                            <span className="label-text">Your email</span>
+                        </label>
+
+                        <input className="input input-bordered w-full" defaultValue={user.email} readOnly type='text'
+                            {...register("email")}
+                        />
                     </div>
                 </div>
 

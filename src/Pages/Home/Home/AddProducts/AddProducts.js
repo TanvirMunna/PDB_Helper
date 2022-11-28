@@ -1,15 +1,12 @@
-import React, { useContext, useState } from 'react';
-import { set, useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
-import { useLocation, useNavigate } from 'react-router';
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import {useNavigate } from 'react-router';
 import { AuthContext } from '../../../../Context/Authprovider';
 
 const AddProducts = () => {
-    const { user } = useContext(AuthContext);
+    const { user,loader } = useContext(AuthContext);
     const imghostkey = process.env.REACT_APP_imbgbb_key;
     const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/myProducts';
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -18,6 +15,7 @@ const AddProducts = () => {
         const image = data.image[0];
 
         const formData = new FormData();
+
         formData.append('image', image);
 
         fetch(`https://api.imgbb.com/1/upload?key=${imghostkey}`, {
@@ -29,10 +27,9 @@ const AddProducts = () => {
                 if (imageData.success || user?.uid) {
                     console.log(imageData.data.url);
                     const seller = user.displayName;
-                    const sellerEmail = user.email;
                     const addedProduct = {
                         seller: seller,
-                        sellerEmail: sellerEmail,
+                        email: user.email,
                         image: imageData.data.url,
                         brand: data.brand,
                         productName: data.productName,
