@@ -33,7 +33,7 @@ const Buyers = () => {
     }
     return (
         <div>
-            <h1 className="text-3xl">Buyers</h1>
+            <h1 className="text-3xl my-3">Buyers</h1>
             <div className="overflow-x-auto">
                 <table className="table table-compact w-full">
                     <thead>

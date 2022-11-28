@@ -53,7 +53,7 @@ const Advertisement = () => {
                                 <p>Condition: {product.condition}</p>
                                 <div>
                                     {
-                                        product.seller ?
+                                        product.role ?
                                             <>
                                                 <button className="" title='Verified'>
                                                     Verified seller: {product.seller}

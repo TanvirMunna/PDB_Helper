@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Context/Authprovider';
 
 const Sellers = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:8000/addedProducts?email=${user.email}`;
+    const url = `http://localhost:8000/addedProducts`;
     const { data: addedProducts ,refetch} = useQuery({
         queryKey: ["addedProducts", user?.email],
         queryFn: async () => {
@@ -29,9 +29,25 @@ const Sellers = () => {
             })
         }
     }
+    const handleVeryfied = _id => {
+        fetch(`http://localhost:8000/addedProducts/verified/${_id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    alert('Verified successfully')
+                    refetch();
+                }
+        })
+    }
     return (
         <div>
-            <h1 className="text-3xl">Sellers</h1>
+            <h1 className="text-3xl my-3">Sellers</h1>
 
             <div className="overflow-x-auto">
                 <table className="table table-compact w-full">
@@ -43,6 +59,7 @@ const Sellers = () => {
                             <th>Brand</th>
                             <th>Location</th>
                             <th>Posted date</th>
+                            <th>Verify</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -61,6 +78,7 @@ const Sellers = () => {
                                     <td>{product.brand}</td>
                                     <td>{product.location}</td>
                                     <td>{product.postedDate}</td>
+                                    <td>{product.role !=='verified' && <button onClick={()=>handleVeryfied(product._id)} className='btn btn-xs btn-success'>Verify</button>}</td>
 
                                     <td className='hover:cursor-pointer'>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 text-red-500"

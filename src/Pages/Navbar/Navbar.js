@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/icon/logo.png'
@@ -5,6 +6,16 @@ import { AuthContext } from '../../Context/Authprovider';
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
 
+    const url = `http://localhost:8000/users`;
+    const { data: allUser, refetch } = useQuery({
+        queryKey: ["allUser"],
+        queryFn: async () => {
+            const res = await fetch(url);
+            const data = await res.json();
+            return data
+        }
+    });
+    console.log(allUser);
     const handleLogout = () => {
         logOut()
             .then(() => { })
@@ -12,7 +23,7 @@ const Navbar = () => {
     }
     const menulist = <>
         {
-            user?.uid && 
+            user?.uid &&
             <p>Welcome<small>{user.displayName}</small></p>
         }
         <Link to='/'>Home</Link>
@@ -24,10 +35,12 @@ const Navbar = () => {
             user?.uid ?
                 <>
                     <Link onClick={handleLogout}>Logout</Link>
-                    <Link to='/dashboard'>Dashboard</Link>
                 </>
                 :
                 <Link to='/login'>Login</Link>
+        }
+        {
+            user?.uid === 'febHPbFGPchVYjUObWXdNClG9Ef1' && <Link to='/dashboard'>Dashboard</Link>
         }
     </>
 
