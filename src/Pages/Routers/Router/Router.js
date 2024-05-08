@@ -11,12 +11,11 @@ import Categories from "../../Home/Home/Categories/Categories";
 import SelectedBrand from "../../SelectedBrand/SelectedBrand";
 import Signup from "../../Signup/Signup";
 import Login from "../../Signup/Login";
-import Dashboard from "../../Dashboard/Dashboard";
-import Privaterout from "../Privaterout/Privaterout";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import DashboardLayout from "../../../Layout/DashboardLayout";
-import Sellers from "../../Dashboard/Sellers/Sellers";
-import Buyers from "../../Dashboard/Buyers/Buyers";
 import OrderedProducts from "../../OrderedProducts/OrderedProducts";
+import User from "../../Dashboard/User/User";
+import Worker from "../../Dashboard/Worker/Worker";
 
 export const routers = createBrowserRouter([
   {
@@ -34,17 +33,17 @@ export const routers = createBrowserRouter([
       {
         path: "/addPost",
         element: (
-          <Privaterout>
+          <PrivateRoute>
             <AddPost />
-          </Privaterout>
+          </PrivateRoute>
         ),
       },
       {
         path: "/highlight/:id",
         element: (
-          <Privaterout>
+          <PrivateRoute>
             <Highlight />
-          </Privaterout>
+          </PrivateRoute>
         ),
         loader: ({ params }) =>
           fetch(
@@ -58,17 +57,17 @@ export const routers = createBrowserRouter([
       {
         path: "/myPost",
         element: (
-          <Privaterout>
+          <PrivateRoute>
             <MyPosts />
-          </Privaterout>
+          </PrivateRoute>
         ),
       },
       {
         path: "/orderedProduct",
         element: (
-          <Privaterout>
+          <PrivateRoute>
             <OrderedProducts></OrderedProducts>
-          </Privaterout>
+          </PrivateRoute>
         ),
       },
       {
@@ -78,9 +77,9 @@ export const routers = createBrowserRouter([
       {
         path: "/selectedBrand/:id",
         element: (
-          <Privaterout>
+          <PrivateRoute>
             <SelectedBrand></SelectedBrand>
-          </Privaterout>
+          </PrivateRoute>
         ),
         loader: ({ params }) =>
           fetch(
@@ -100,25 +99,25 @@ export const routers = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <Privaterout>
+      <PrivateRoute>
         <DashboardLayout></DashboardLayout>
-      </Privaterout>
+      </PrivateRoute>
     ),
     children: [
       {
         path: "/dashboard",
         element: (
-          <Privaterout>
-            <Sellers />
-          </Privaterout>
+          <PrivateRoute>
+            <User />
+          </PrivateRoute>
         ),
       },
       {
         path: "/dashboard/worker",
         element: (
-          <Privaterout>
-            <Buyers />
-          </Privaterout>
+          <PrivateRoute>
+            <Worker />
+          </PrivateRoute>
         ),
       },
     ],

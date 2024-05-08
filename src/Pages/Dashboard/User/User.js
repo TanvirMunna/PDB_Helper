@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/Authprovider";
 
-const Sellers = () => {
+const User = () => {
   const { user } = useContext(AuthContext);
   const url = `https://smart-resale-stall-server.vercel.app/addedProducts`;
   const { data: addedProducts, refetch } = useQuery({
@@ -112,4 +112,4 @@ const Sellers = () => {
   );
 };
 
-export default Sellers;
+export default User;

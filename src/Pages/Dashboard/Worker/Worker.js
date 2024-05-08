@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/Authprovider";
 
-const Buyers = () => {
+const Worker = () => {
   const { user } = useContext(AuthContext);
   console.log(user.email);
   const url = `https://smart-resale-stall-server.vercel.app/allBuyers`;
@@ -90,4 +90,4 @@ const Buyers = () => {
   );
 };
 
-export default Buyers;
+export default Worker;
