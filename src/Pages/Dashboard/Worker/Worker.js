@@ -5,20 +5,23 @@ import { AuthContext } from "../../../Context/Authprovider";
 const Worker = () => {
   const { user } = useContext(AuthContext);
   console.log(user.email);
-  const url = `https://smart-resale-stall-server.vercel.app/allBuyers`;
-  const { data: orderedProducts, refetch } = useQuery({
-    queryKey: ["orderedProducts"],
+  const url = `https://smart-resale-stall-server.vercel.app/users`;
+  const { data: workers, refetch } = useQuery({
+    queryKey: ["workers", user?.email],
     queryFn: async () => {
       const res = await fetch(url);
       const data = await res.json();
-      return data;
+      // Filter users where userType is "user"
+      const filteredUsers = data.filter(user => user.userType === "worker");
+      return filteredUsers;
     },
   });
+  
 
   const handleDelete = (_id) => {
     const confirmation = window.confirm(`Are you sure that want to delete`);
     if (confirmation) {
-      fetch(`https://smart-resale-stall-server.vercel.app/buyers/${_id}`, {
+      fetch(`https://smart-resale-stall-server.vercel.app/users/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -40,28 +43,22 @@ const Worker = () => {
             <tr>
               <th></th>
               <th>Worker Name</th>
-              <th>Work</th>
-              <th>Location</th>
               <th>Email</th>
-              <th>Phone</th>
+              <th>User Type</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {orderedProducts?.map((ordered, i) => (
+            {workers?.map((worker, i) => (
               <tr key={i} i={i}>
                 <th>{i + 1}</th>
 
-                <td>{ordered.buyerName}</td>
+                <td>{worker.name}</td>
                 <td>
-                  {ordered.brand},{ordered.productName}
+                  {worker.email}
                 </td>
-                <td>{ordered.buyerLocation}</td>
-                <td>{ordered.price}</td>
                 <td>
-                  <button className="bg-[#A2D2FF] text-gray-600 h-7 w-auto px-3 rounded-md font-semibold shadow-lg">
-                    Paid/Unpaid
-                  </button>
+                  {worker.userType}
                 </td>
 
                 <td className="hover:cursor-pointer">
@@ -72,7 +69,7 @@ const Worker = () => {
                     stroke-width="1.5"
                     stroke="currentColor"
                     className="w-6 h-6 text-red-500"
-                    onClick={() => handleDelete(ordered._id)}
+                    onClick={() => handleDelete(worker._id)}
                   >
                     <path
                       stroke-linecap="round"
